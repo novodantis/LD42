@@ -125,8 +125,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f574f8e836e3524ca89b94c596b1ff5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gdp: 1
-  population: 9.5
+  gdp: 0.5
+  population: 1
   star: {fileID: 1763655136108096}
   destructionEffect: {fileID: 0}
   remains: {fileID: 0}

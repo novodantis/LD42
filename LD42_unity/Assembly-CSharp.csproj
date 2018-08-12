@@ -597,6 +597,7 @@
      <Compile Include="Assets\Scripts\Economy.cs" />
      <Compile Include="Assets\Scripts\Node.cs" />
      <Compile Include="Assets\Scripts\Starsystem.cs" />
+     <Compile Include="Assets\Scripts\Util\RotateObject.cs" />
      <None Include="Assets\Fungus\Thirdparty\ThirdPartyNotices.txt" />
      <None Include="Assets\Fungus\Thirdparty\FungusLua\Thirdparty\JSON\readme.txt" />
      <None Include="Assets\Fungus\Docs\README.txt" />
