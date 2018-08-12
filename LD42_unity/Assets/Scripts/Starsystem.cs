@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class Starsystem : Node {
 
 	public float gdp;					// income per population
@@ -11,14 +12,20 @@ public class Starsystem : Node {
 	public GameObject destructionEffect;	// prefab spawned on destroying
 	public GameObject remains;			// visual when destroyed
 	
+	// sound
+	public AudioClip destructionSfx;		// sound on destruction
 	public bool destroyed;
+	private AudioSource audioSource;
 
 	public void Awake(){
+		audioSource = GetComponent<AudioSource>();
 		UpdateAppearance();
 	}
 
 	public void Annihilate() {
 		// destroy this system
+		audioSource.PlayOneShot(destructionSfx);
+		
 		destroyed = true;
 
 		if (destructionEffect != null)
