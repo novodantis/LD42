@@ -797,10 +797,12 @@ MonoBehaviour:
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 1
+    m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: System Name
+  m_Text: 'System
+
+    Name'
 --- !u!114 &114257006508326924
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2142,7 +2144,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 5}
+  m_AnchoredPosition: {x: 0, y: 9.7}
   m_SizeDelta: {x: 118, y: 102}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!224 &224542840602676420
@@ -2289,8 +2291,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000015258789}
-  m_SizeDelta: {x: 209.98, y: 30}
+  m_AnchoredPosition: {x: 0, y: 9.699997}
+  m_SizeDelta: {x: 185.85, y: 41.71}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!224 &224885931160213134
 RectTransform:

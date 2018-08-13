@@ -13,7 +13,7 @@ public class StarsystemInfoUI : MonoBehaviour {
 	public Text gdpCounter;
 	public Text incomeCounter;
 
-	private Starsystem systemDisplayed;
+	public Starsystem systemDisplayed;
 
 	public void DisplayValuesFor(Starsystem _thisSystem){
 		systemDisplayed = _thisSystem;
@@ -27,9 +27,9 @@ public class StarsystemInfoUI : MonoBehaviour {
 			buttons.SetActive(true);
 			nameDisplay.text = systemDisplayed.gameObject.name;
 
-			populationCounter.text = systemDisplayed.population + " billion";
-			gdpCounter.text = systemDisplayed.gdp + " mtons";
-			incomeCounter.text = (systemDisplayed.population * systemDisplayed.gdp).ToString();
+			populationCounter.text = (Mathf.Round(systemDisplayed.population * 10f) / 10f) + " billion";
+			gdpCounter.text = (Mathf.Round(systemDisplayed.gdp * 10f) / 10f) + " mtons";
+			incomeCounter.text = (Mathf.Round((systemDisplayed.population * systemDisplayed.gdp) * 100f) / 100f).ToString();
 		}
 		
 		gameObject.SetActive(true);
@@ -44,7 +44,7 @@ public class StarsystemInfoUI : MonoBehaviour {
 	}
 
 	public void ActionRoute(){
-		// start a Bypass from here
+		// start/continue/end a Bypass from here
 	}
 
 	public void ActionDemolish(){

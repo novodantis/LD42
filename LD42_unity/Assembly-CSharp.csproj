@@ -600,6 +600,7 @@
      <Compile Include="Assets\Scripts\PlayerControl.cs" />
      <Compile Include="Assets\Scripts\SelectNode.cs" />
      <Compile Include="Assets\Scripts\Starsystem.cs" />
+     <Compile Include="Assets\Scripts\TutorialLogic.cs" />
      <Compile Include="Assets\Scripts\UI\MainUI.cs" />
      <Compile Include="Assets\Scripts\UI\StarsystemInfoUI.cs" />
      <Compile Include="Assets\Scripts\Util\MouseOrbitImproved.cs" />

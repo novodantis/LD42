@@ -72,6 +72,7 @@ GameObject:
   - component: {fileID: 4151884856550352}
   - component: {fileID: 33953283357959930}
   - component: {fileID: 23979666721100092}
+  - component: {fileID: 114627450600121232}
   m_Layer: 0
   m_Name: Planet
   m_TagString: Untagged
@@ -210,7 +211,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 3d63e55c8a4b0324ca9ea334431da1eb, type: 2}
+  - {fileID: 2100000, guid: cac41fb1e588e634d9af70c0abfe57b8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -245,7 +246,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: b8fe15290b26d4740af66395cd66d1d9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -271,14 +272,14 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1708359993063186}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300002, guid: 75b55c1085da69d4f9dbe85dd41b82fa, type: 3}
 --- !u!33 &33953283357959930
 MeshFilter:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1763655136108096}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300002, guid: 75b55c1085da69d4f9dbe85dd41b82fa, type: 3}
 --- !u!82 &82764844698557922
 AudioSource:
   m_ObjectHideFlags: 1
@@ -411,6 +412,18 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &114627450600121232
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1763655136108096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2160931a228b13b4f885382da3c570f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationAxis: {x: 0, y: 1.5, z: 0}
 --- !u!114 &114849629288959538
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -422,7 +435,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2160931a228b13b4f885382da3c570f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationAxis: {x: 0, y: 0.6, z: 0}
+  rotationAxis: {x: 0, y: 1.6, z: 0}
 --- !u!114 &114935563424238972
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -434,8 +447,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f574f8e836e3524ca89b94c596b1ff5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gdp: 0.5
-  population: 1
+  gdp: 11
+  population: 8.6
   star: {fileID: 1763655136108096}
   destructionEffect: {fileID: 1516273062642924, guid: 4d50057ce8ea60b40b2b9af8261973bb,
     type: 2}
