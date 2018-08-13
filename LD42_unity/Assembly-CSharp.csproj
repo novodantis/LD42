@@ -595,11 +595,13 @@
      <Compile Include="Assets\Fungus\Thirdparty\Usfxr\Scripts\SfxrCacheSurrogate.cs" />
      <Compile Include="Assets\Fungus\Thirdparty\Usfxr\Scripts\SfxrParams.cs" />
      <Compile Include="Assets\Fungus\Thirdparty\Usfxr\Scripts\SfxrSynth.cs" />
+     <Compile Include="Assets\Scripts\Bypass.cs" />
      <Compile Include="Assets\Scripts\Economy.cs" />
-     <Compile Include="Assets\Scripts\Node.cs" />
+     <Compile Include="Assets\Scripts\GlobalSettings.cs" />
      <Compile Include="Assets\Scripts\PlayerControl.cs" />
      <Compile Include="Assets\Scripts\SelectNode.cs" />
      <Compile Include="Assets\Scripts\Starsystem.cs" />
+     <Compile Include="Assets\Scripts\TitleLogic.cs" />
      <Compile Include="Assets\Scripts\TutorialLogic.cs" />
      <Compile Include="Assets\Scripts\UI\MainUI.cs" />
      <Compile Include="Assets\Scripts\UI\StarsystemInfoUI.cs" />

@@ -17,7 +17,7 @@ public class PlayerControl : MonoBehaviour {
 
 	public void Update(){
 		if (Input.GetMouseButtonDown(0)){
-			Debug.Log("Selecting...");
+			//Debug.Log("Selecting...");
 
 			RaycastHit newHit = new RaycastHit();
 

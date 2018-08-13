@@ -7,6 +7,7 @@ public class MainUI : MonoBehaviour {
 	public Text fundsCounter;
 	public Text cashflowCounter;
 	public Text happinessCounter;
+	public Text turnCounter;
 
 	// sub-components
 	public StarsystemInfoUI starsystemPanel;
@@ -20,9 +21,11 @@ public class MainUI : MonoBehaviour {
 	
 	public void Update(){
 		if (economy != null){
-			fundsCounter.text = economy.funds.ToString();
+			fundsCounter.text = Mathf.Round(economy.funds).ToString();
 			cashflowCounter.text = economy.income.ToString();
 			happinessCounter.text = economy.happiness.ToString();
+
+			turnCounter.text = economy.turnCounter.ToString();
 		}
 	}
 }
