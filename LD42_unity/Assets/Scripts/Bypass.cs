@@ -5,7 +5,6 @@ using UnityEngine;
 public class Bypass : MonoBehaviour {
 	// Settings
 	public float maxLinkDistance = 12f;
-	public float costBase = 500f;
 	public Color completeColour = Color.blue;
 	public Color constructionColour = Color.yellow;
 
@@ -22,8 +21,6 @@ public class Bypass : MonoBehaviour {
 
 		if (localEconomy == null)
 			Debug.LogError("Could not find economy!");
-
-		costBase = GlobalSettings.bypassCost;
 	}
 
 	public void Update (){
@@ -63,7 +60,7 @@ public class Bypass : MonoBehaviour {
 	public bool Route(Starsystem _newNode){
 		if (_newNode == nodes[nodes.Count-1]){
 			Debug.LogWarning("Same Node!");
-		} else {
+		} else if (CheckUniqueNode(_newNode)){
 			if (_newNode.destroyed){
 				// valid step, check distance
 				if (CheckRange(_newNode.transform.position)){
@@ -78,13 +75,17 @@ public class Bypass : MonoBehaviour {
 			} else {
 				if (CheckUnique(_newNode)){
 					// finish if you can
-					int _cost = GetCost();
+					int _cost = GetCost(true);
 					if (localEconomy.Pay(_cost)){
 						Complete(_newNode);
 						return true;
+					} else {
+						Debug.LogWarning("Cannot afford bypass, cost: "+_cost);
 					}
 				}
 			}
+		} else {
+			// already have this node in the bypass
 		}
 		
 		return false;
@@ -99,8 +100,11 @@ public class Bypass : MonoBehaviour {
 		}
 	}
 
-	public int GetCost(){
-		return Mathf.RoundToInt((costBase * nodes.Count) + (costBase * localEconomy.allBypasses.Length));
+	public int GetCost(bool _projection){
+		int _nodeCount = (_projection ? nodes.Count + 1 : nodes.Count);
+		int _costCalc = Mathf.RoundToInt((GlobalSettings.bypassNodeCost * _nodeCount) + (GlobalSettings.bypassCost * localEconomy.allBypasses.Length));
+		Debug.Log("Cost calc: " + _nodeCount + " nodes, " + localEconomy.allBypasses.Length + " bypasses built, projected: "+_costCalc);
+		return _costCalc;
 	}
 
 	public float ProjectProfit(Starsystem _lastSystem){
@@ -135,6 +139,14 @@ public class Bypass : MonoBehaviour {
 			}
 		}
 
+		return true;
+	}
+
+	public bool CheckUniqueNode(Starsystem _node){
+		foreach (Starsystem n in nodes){
+			if (_node == n)
+				return false;
+		}
 		return true;
 	}
 

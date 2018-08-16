@@ -69,6 +69,7 @@ public class Economy : MonoBehaviour {
 		// returns false if cannot afford
 		if (funds >= _cost){
 			funds -= _cost;
+			Debug.Log("Paid: "+_cost);
 			return true;
 		} else {
 			Debug.LogWarning("Can't afford it!");

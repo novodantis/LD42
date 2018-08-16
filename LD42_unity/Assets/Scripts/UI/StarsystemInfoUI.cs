@@ -54,6 +54,11 @@ public class StarsystemInfoUI : MonoBehaviour {
 				startRouteButton.SetActive(false);
 			} else {
 				startRouteButton.SetActive(true);
+				if (newBypass.CheckRange(systemDisplayed.transform.position)){
+					bypassCostDisplay.text = "CONNECT";
+				} else {
+					bypassCostDisplay.text = "OUT OF RANGE";
+				}
 			}
 		} else {
 			systemStats.SetActive(true);
@@ -68,19 +73,25 @@ public class StarsystemInfoUI : MonoBehaviour {
 
 			if (newBypass != null && routingMode){
 				if (newBypass.nodes.Count > 0 && newBypass.GetLastNode() != systemDisplayed){
-					if (newBypass.CheckUnique(systemDisplayed)){
-						if (newBypass.CheckRange(systemDisplayed.transform.position)){
-							// could complete here
-							bypassCostDisplay.text = "-" + newBypass.GetCost();
-							bypassProfitProjection.SetActive(true);
-							bypassProfitDisplay.text = "+"+newBypass.ProjectProfit(systemDisplayed);
+					if (newBypass.CheckUniqueNode(systemDisplayed)){
+						if (newBypass.CheckUnique(systemDisplayed)){
+							if (newBypass.CheckRange(systemDisplayed.transform.position)){
+								// could complete here
+								bypassCostDisplay.text = "-" + newBypass.GetCost(true);
+								bypassProfitProjection.SetActive(true);
+								bypassProfitDisplay.text = "+"+newBypass.ProjectProfit(systemDisplayed);
+							} else {
+								bypassCostDisplay.text = "OUT OF RANGE";
+							}
 						} else {
-							bypassCostDisplay.text = "OUT OF RANGE";
+							bypassCostDisplay.text = "ALREADY MADE";
 						}
 					} else {
-						bypassCostDisplay.text = "ALREADY MADE";
+						bypassCostDisplay.text = "CANNOT RE-TREAD";
 					}
 					
+				} else {
+					bypassCostDisplay.text = "BUILDING...";
 				}
 			}
 				
@@ -89,6 +100,13 @@ public class StarsystemInfoUI : MonoBehaviour {
 		
 		
 		gameObject.SetActive(true);
+	}
+
+	public void Open(){
+		//refresh values
+		// if there's a bypass under construction, continue it
+		if (newBypass != null)
+			SetMode(2);
 	}
 
 	public void Close(){
@@ -106,24 +124,27 @@ public class StarsystemInfoUI : MonoBehaviour {
 			newBypass.Route(systemDisplayed);
 			if (newBypass.completed){
 				// all done!
+				newBypass = null;
 				SetMode(0);
 			}
 		} else {
 			// start route logic
+			if (newBypass == null){
+				newBypass = Instantiate(bypassPrefab, systemDisplayed.transform.position, Quaternion.identity);
+				newBypass.Begin(systemDisplayed);
+			} else {
+				// continue old one
+			}
 			SetMode(2);
-			newBypass = Instantiate(bypassPrefab, systemDisplayed.transform.position, Quaternion.identity);
-			newBypass.Begin(systemDisplayed);
+			
 		}
 	}
 
 	public void ActionRouteCancel(){
 		// stop building this Bypass
-		if (routingMode){
-			SetMode(0);
-			Destroy(newBypass.gameObject);
-		} else {
-			Debug.LogWarning("Should not be able to cancel route, was not yet in Routing mode");
-		}
+		routingMode = false;
+		Destroy(newBypass.gameObject);
+		SetMode(0);
 	}
 
 	public void ActionDemolishReady(){
@@ -161,7 +182,6 @@ public class StarsystemInfoUI : MonoBehaviour {
 				demolishCostDisplay.text = "";
 				bypassCostDisplay.text = "";
 				bypassProfitProjection.SetActive(false);
-				ActionRouteCancel();
 				break;
 			case 1:
 				// demolish
@@ -171,7 +191,6 @@ public class StarsystemInfoUI : MonoBehaviour {
 				demolishCostDisplay.text = "-" + GlobalSettings.demolishCost;
 				bypassCostDisplay.text = "";
 				bypassProfitProjection.SetActive(false);
-				ActionRouteCancel();
 				break;
 			case 2:
 				// routing
@@ -185,5 +204,6 @@ public class StarsystemInfoUI : MonoBehaviour {
 		demolishButtons.SetActive(demolishingMode);
 		routingButtons.SetActive(routingMode);
 
+		DisplayValuesFor(systemDisplayed);
 	}
 }

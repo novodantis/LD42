@@ -9,6 +9,7 @@ public class TutorialLogic : MonoBehaviour {
 	public Flowchart tutorialScript;
 	public Starsystem clickOnTut1;
 	public Starsystem clickOnTut2;
+	public GameObject prompt1;
 	public MainUI userInterface;
 	private Economy localEconomy;
 
@@ -21,9 +22,18 @@ public class TutorialLogic : MonoBehaviour {
 		}
 		if (clickOnTut1.destroyed){
 			tutorialScript.SetBooleanVariable("earthDestroyed", true);
+			if (prompt1 != null)
+				prompt1.SetActive(true);
 		}
-		if (userInterface.starsystemPanel.systemDisplayed != clickOnTut1){
+		if (userInterface.starsystemPanel.systemDisplayed == clickOnTut2){
 			tutorialScript.SetBooleanVariable("selectedEridani", true);
+			if (prompt1 != null)
+				prompt1.SetActive(false);
+		}
+		if (userInterface.starsystemPanel.isActiveAndEnabled){
+			tutorialScript.SetBooleanVariable("panelClosed", false);
+		} else {
+			tutorialScript.SetBooleanVariable("panelClosed", true);
 		}
 		if (localEconomy.turnCounter == 12){
 			tutorialScript.SetBooleanVariable("summary", true);
