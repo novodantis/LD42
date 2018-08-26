@@ -453,6 +453,7 @@ MonoBehaviour:
   destructionEffect: {fileID: 1516273062642924, guid: 4d50057ce8ea60b40b2b9af8261973bb,
     type: 2}
   remains: {fileID: 1777552589421508}
+  marker: {fileID: 114938334334682666, guid: be4a0cb01d3c47549a02b24697a7e95d, type: 2}
   destructionSfx: {fileID: 8300000, guid: b1786ccd611bdaa4e8d0b65505133a16, type: 3}
   destroyed: 0
 --- !u!135 &135595355006092772

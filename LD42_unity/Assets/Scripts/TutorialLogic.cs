@@ -30,7 +30,7 @@ public class TutorialLogic : MonoBehaviour {
 			if (prompt1 != null)
 				prompt1.SetActive(false);
 		}
-		if (userInterface.starsystemPanel.isActiveAndEnabled){
+		if (userInterface.starsystemPanel.gameObject.activeSelf){
 			tutorialScript.SetBooleanVariable("panelClosed", false);
 		} else {
 			tutorialScript.SetBooleanVariable("panelClosed", true);

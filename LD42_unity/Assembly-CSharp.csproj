@@ -598,6 +598,7 @@
      <Compile Include="Assets\Scripts\Bypass.cs" />
      <Compile Include="Assets\Scripts\Economy.cs" />
      <Compile Include="Assets\Scripts\GlobalSettings.cs" />
+     <Compile Include="Assets\Scripts\GridPointer.cs" />
      <Compile Include="Assets\Scripts\PlayerControl.cs" />
      <Compile Include="Assets\Scripts\SelectNode.cs" />
      <Compile Include="Assets\Scripts\Starsystem.cs" />

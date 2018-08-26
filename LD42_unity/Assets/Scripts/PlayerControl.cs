@@ -8,13 +8,22 @@ public class PlayerControl : MonoBehaviour {
 	public Camera cameraObject;
 	public GenericMoveCamera standardCam;
 	public MouseOrbitImproved orbitCam;
+	public float camLerpSpeed = 1f;
+	public AnimationCurve tweenCurve = AnimationCurve.Linear(0.0f, 0.0f, 1.0f, 1.0f);
 
 	// other references
 	public MainUI userInterface;
 
 	private bool systemSelected;		// true if target planet currently selected
 	private Starsystem selectedTarget;		// target Node-type object clicked on
-
+	private GameObject viewLocus;			// locus of camera
+	private Vector3 viewTarget;				// where locus is headed to
+	private Vector3 viewStart;				// where locus started
+	private float viewProgress;				// progression to target of locus
+	public void Awake(){
+		viewLocus = new GameObject();
+		ResetCamTarget();
+	}
 	public void Update(){
 		if (Input.GetMouseButtonDown(0)){
 			//Debug.Log("Selecting...");
@@ -34,15 +43,39 @@ public class PlayerControl : MonoBehaviour {
 			} else {
 			}
 		}
+
+		if (viewProgress < 1){
+			// lerp view
+			viewProgress += Time.deltaTime * camLerpSpeed;
+			viewLocus.transform.position = Vector3.Lerp(viewStart, viewTarget, tweenCurve.Evaluate(viewProgress));
+		}
+	}
+
+	public void ResetCamTarget(){
+		orbitCam.target = viewLocus.transform;
+		viewLocus.transform.position = transform.position;
+		viewLocus.transform.rotation = transform.rotation;
+		viewLocus.transform.Translate(0,0,orbitCam.distance, Space.Self);				// place target in front of us
+		orbitCam.ResetView(transform.eulerAngles.y, transform.eulerAngles.x);
 	}
 
 	public void SelectStarsystem(Starsystem _selected){
 		selectedTarget = _selected;
 		systemSelected = true;
 
-		standardCam.enabled = false;
-		// TO DO: Tween the cam nicely to orbit mode; can make its target assigned to an E.G.O, which lerps toward system targets
-		orbitCam.target = selectedTarget.transform;
+		if (standardCam.enabled){
+			// not in planet view
+			ResetCamTarget();
+			standardCam.enabled = false;
+			Debug.Log("Not yet selected a planet");
+		} else {
+			// currently viewing another planet
+			Debug.Log("Selecting another planet");
+		}
+		viewTarget = selectedTarget.transform.position;
+		viewStart = orbitCam.target.position;
+		viewProgress = 0;
+		
 		orbitCam.enabled = true;
 
 		userInterface.starsystemPanel.DisplayValuesFor(selectedTarget);

@@ -60,6 +60,16 @@ public class MouseOrbitImproved : MonoBehaviour {
 		}
 		
 	}
+
+	public void ResetView(float azimuth, float inclination){
+		// sets the view to current angle and inclination
+		Debug.Log("Set Angle, Az: "+azimuth+", Inc: "+inclination);
+		if (inclination > 90){
+			inclination -= 360;			// make a minus value rather than a wrapped one
+		}
+		x = azimuth;
+		y = inclination;
+	}
 	
 	public static float ClampAngle(float angle, float min, float max)
 	{
